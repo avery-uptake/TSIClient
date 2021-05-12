@@ -26,7 +26,7 @@ pip install TSIClient
 Or if you want to get the latest code, directly fom GitHub:
 
 ````bash
-pip install git+https://github.com/RaaLabs/TSIClient.git
+pip install git+https://github.com/avery-uptake/TSIClient/
 ````
 ## Quickstart
 Instantiate the TSIClient to query your TSI environment. Log in to Azure using the Azure CLI:
