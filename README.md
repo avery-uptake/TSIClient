@@ -19,12 +19,9 @@ for analysts, data scientists and developers working with time series data in Az
 - TSIClient: <https://raalabs-tsiclient.readthedocs.io/en/latest/>
 
 ## Installation
-We recommended to use a Python version >= 3.6. You can install the TSIClient from PyPi:
-````bash
-pip install TSIClient
+We recommended to use a Python version >= 3.6. 
 ````
-Or if you want to get the latest code, directly fom GitHub:
-
+Since this ia fork of the main branch, we'll want to install here:
 ````bash
 pip install git+https://github.com/avery-uptake/TSIClient/
 ````
