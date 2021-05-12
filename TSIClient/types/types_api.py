@@ -13,6 +13,7 @@ class TypesApi():
         authorization_api: AuthorizationApi,
         common_funcs: CommonFuncs,
         instances=None,
+        value_variable_name='Value'
     ):
 
         self.authorization_api = authorization_api
@@ -67,7 +68,7 @@ class TypesApi():
         return json.loads(response.text)
 
 
-    def getTypeTsx(self):
+    def getTypeTsx(self, valueVariableName):
         """Extracts type id and Value (tsx) from types from the specified TSI environment.
 
         Returns:
@@ -88,8 +89,8 @@ class TypesApi():
         
         for typeElement in jsonResponse['types']:
             try:
-                typeElement['variables']['Value']['value']['tsx']
-                types[typeElement['id']] = typeElement['variables']['Value']['value']['tsx']
+                typeElement['variables'][valueVariableName]['value']['tsx']
+                types[typeElement['id']] = typeElement['variables'][valueVariableName]['value']['tsx']
             except:
                 logging.error('"Value" for type id {type} cannot be extracted'.format(type = typeElement['id']))
 

@@ -437,7 +437,8 @@ class QueryApi():
         interpolationList=None,
         interpolationSpanList=None,
         requestBodyType=None,
-        useWarmStore=False
+        useWarmStore=False,
+        valueVariableName='Value'
     ):
         """Returns a dataframe with timestamp and values for the time series that match the description given in "timeseries".
 
@@ -481,6 +482,7 @@ class QueryApi():
         authorizationToken = self.authorization_api._getToken()
         url = "https://" + self.environmentId + ".env.timeseries.azure.com/timeseries/query?"
         querystring = self.common_funcs._getQueryString(useWarmStore=useWarmStore)
+        
         types = self.types_api.getTypeById(timeseries)
 
         if isinstance(aggregateList, list):
@@ -509,6 +511,7 @@ class QueryApi():
             interpolationList=interpolationList,
             interpolationSpanList=interpolationSpanList,
             authorizationToken=authorizationToken,
+            valueVariableName=valueVariableName
         )
 
 
@@ -526,9 +529,10 @@ class QueryApi():
         interpolationSpanList,
         authorizationToken,
         otherColNamesThanTimeseriesIds=None,
+        valueVariableName='Value'
     ):
         df = pd.DataFrame()
-        typeList = self.types_api.getTypeTsx()
+        typeList = self.types_api.getTypeTsx(valueVariableName)
         if not isinstance(types,list):
             types = [types]
         if not isinstance(timeseries,list):
@@ -539,7 +543,6 @@ class QueryApi():
         else:
             colNames = timeseries
         
-
         for i, _ in enumerate(timeseries):
             if timeseries[i] == None:
                 logging.error("No such tag: {tag}".format(tag=colNames[i]))
